@@ -13,7 +13,7 @@ services:
       cp -r .next/static .next/standalone/.next/static &&
       cp -r public .next/standalone/public
 
-    startCommand: HOSTNAME="0.0.0.0" PORT="${PORT:-10000}" node .next/standalone/server.js
+    startCommand: node server.js
 
     envVars:
       - key: NODE_ENV
