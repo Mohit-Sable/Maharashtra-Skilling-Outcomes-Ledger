@@ -1,0 +1,439 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+/* ============================================================
+   MSOL — Design System
+   Maharashtra Government inspired: Navy + Saffron
+   ============================================================ */
+
+@theme {
+  --color-navy-50: #E8EDF3;
+  --color-navy-100: #C5D1E1;
+  --color-navy-200: #9FB3CD;
+  --color-navy-300: #7895B9;
+  --color-navy-400: #5A7EA9;
+  --color-navy-500: #3C6799;
+  --color-navy-600: #305889;
+  --color-navy-700: #234674;
+  --color-navy-800: #183560;
+  --color-navy-900: #0B3D6E;
+  --color-navy-950: #061F3A;
+
+  --color-saffron-50: #FEF6ED;
+  --color-saffron-100: #FCE8D0;
+  --color-saffron-200: #F9D4A8;
+  --color-saffron-300: #F7C080;
+  --color-saffron-400: #F4A261;
+  --color-saffron-500: #F18D3A;
+  --color-saffron-600: #E07A20;
+  --color-saffron-700: #BD6418;
+  --color-saffron-800: #9A4F14;
+  --color-saffron-900: #7A3E10;
+
+  --color-canvas: #F4F6F8;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F8FAFC;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================================
+   Base Styles
+   ============================================================ */
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-canvas);
+  color: #1a1a2e;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus ring for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-saffron-400);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Component Utilities
+   ============================================================ */
+
+/* KPI Card */
+.kpi-card {
+  background: var(--color-surface);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card:hover {
+  box-shadow: 0 4px 20px rgba(11, 61, 110, 0.08);
+  transform: translateY(-1px);
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-navy-900), var(--color-saffron-400));
+}
+
+.kpi-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-navy-900);
+}
+
+.kpi-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+.kpi-change {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Status Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.chip-verified {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.chip-self-reported {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.chip-unreachable {
+  background: #f1f5f9;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+
+.chip-at-risk {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.chip-document {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+/* Ashoka Header */
+.ashoka-header {
+  background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-800) 50%, var(--color-navy-700) 100%);
+  color: white;
+  border-bottom: 3px solid var(--color-saffron-400);
+}
+
+/* Sidebar */
+.sidebar {
+  background: var(--color-surface);
+  border-right: 1px solid #e2e8f0;
+  min-height: calc(100vh - 100px);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #475569;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  background: var(--color-navy-50);
+  color: var(--color-navy-900);
+}
+
+.sidebar-link.active {
+  background: linear-gradient(135deg, var(--color-navy-900), var(--color-navy-700));
+  color: white;
+  box-shadow: 0 2px 8px rgba(11, 61, 110, 0.2);
+}
+
+/* Demo Banner */
+.demo-banner {
+  background: linear-gradient(90deg, var(--color-saffron-400), var(--color-saffron-500));
+  color: var(--color-navy-950);
+  text-align: center;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Cards */
+.card {
+  background: var(--color-surface);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.card-hover:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* Timeline */
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0.4375rem;
+  top: 1.5rem;
+  bottom: 0;
+  width: 2px;
+  background: #e2e8f0;
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #e2e8f0;
+}
+
+/* Tables */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.data-table th {
+  background: var(--color-canvas);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.data-table tr:hover td {
+  background: var(--color-surface-hover);
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-navy-900), var(--color-navy-700));
+  color: white;
+  padding: 0.625rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 12px rgba(11, 61, 110, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-saffron {
+  background: linear-gradient(135deg, var(--color-saffron-400), var(--color-saffron-500));
+  color: var(--color-navy-950);
+  padding: 0.625rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-saffron:hover {
+  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-navy-900);
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 1.5px solid var(--color-navy-200);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-50);
+}
+
+/* Animated gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-navy-900), var(--color-saffron-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* WhatsApp Mock */
+.whatsapp-bubble {
+  max-width: 80%;
+  padding: 0.625rem 0.875rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  position: relative;
+}
+
+.whatsapp-bubble.incoming {
+  background: white;
+  border-top-left-radius: 4px;
+  margin-right: auto;
+}
+
+.whatsapp-bubble.outgoing {
+  background: #dcf8c6;
+  border-top-right-radius: 4px;
+  margin-left: auto;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.4s ease forwards;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Stagger animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print styles for trainee PDF */
+@media print {
+  .no-print { display: none !important; }
+  .ashoka-header { background: #0B3D6E !important; -webkit-print-color-adjust: exact; }
+  .card { box-shadow: none; border: 1px solid #ddd; }
+}
