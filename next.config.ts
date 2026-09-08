@@ -1,14 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Standalone output bundles only what's needed — ideal for Render / Docker
+  // Standalone output bundles only what's needed — ideal for Render / Docker.
+  // NOTE: turbopack.root is intentionally NOT set here.
+  // Setting it to __dirname bakes the local absolute path (e.g. C:\Users\...)
+  // into .next/standalone/server.js at build time, which crashes the server
+  // on Render's Linux environment. The lockfile warning it suppresses is harmless on CI.
   output: "standalone",
-
-  // Pin turbopack root to the msol directory to avoid the lockfile warning
-  // (Next.js was detecting the parent SIH-2026/package-lock.json as the root)
-  turbopack: {
-    root: __dirname,
-  },
 };
 
 export default nextConfig;

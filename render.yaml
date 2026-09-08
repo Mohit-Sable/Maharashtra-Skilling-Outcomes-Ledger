@@ -6,7 +6,13 @@ services:
     plan: free          # upgrade to starter/standard for production
     branch: main
 
-    buildCommand: npm ci && npm run build && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public
+    buildCommand: >
+      npm ci &&
+      npm run build &&
+      mkdir -p .next/standalone/.next &&
+      cp -r .next/static .next/standalone/.next/static &&
+      cp -r public .next/standalone/public
+
     startCommand: node .next/standalone/server.js
 
     envVars:
@@ -14,11 +20,10 @@ services:
         value: production
       - key: HOSTNAME
         value: "0.0.0.0"
-      - key: PORT
-        value: "3000"
-      # Add real secrets here, e.g.:
-      # - key: NEXT_PUBLIC_API_URL
-      #   value: https://api.example.com
+      # PORT is injected automatically by Render at runtime — do NOT hardcode it here.
+      # NODE_OPTIONS: cap heap to stay within Render free tier's 512 MB RAM limit.
+      - key: NODE_OPTIONS
+        value: "--max-old-space-size=400"
 
     healthCheckPath: /
     autoDeploy: true
